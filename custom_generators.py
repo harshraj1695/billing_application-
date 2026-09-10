@@ -18,7 +18,7 @@ if not runtime_config_path.exists():
     shutil.copy2(RESOURCE_DIR / 'config.json', runtime_config_path)
 config_data = loads(runtime_config_path.read_text())
 store_logo_path = RESOURCE_DIR / 'assets' / 'lalitaandsons.png'
-radhekrina_image_path = RESOURCE_DIR / 'images' / 'radhekrina.png'
+receipt_logo_path = RESOURCE_DIR / 'assets' / 'lalitaandsons.png'
 
 
 def escpos_raster_image(image_path, max_width=384, max_height=160):
@@ -155,7 +155,7 @@ class EscPosCmdGenerator:
             f'GSTIN: {store_details["store_gstin"]}'.encode('utf-8'),
             b'\n',
         ]
-        esc_pos_commands += escpos_raster_image(radhekrina_image_path)
+        esc_pos_commands += escpos_raster_image(receipt_logo_path)
         esc_pos_commands += [
             b'\x1B\x61\x00',
             b'------------------------------------------------\n',
@@ -346,11 +346,11 @@ class BillPdfGenerator:
         heading = self._font(28, bold=True)
         y = margin
 
-        with Image.open(radhekrina_image_path) as deity:
-            deity = deity.convert('RGBA')
-            deity.thumbnail((100, 100), Image.LANCZOS)
-            image.paste(deity, ((width - deity.width) // 2, y), deity)
-            y += deity.height + 12
+        with Image.open(receipt_logo_path) as logo:
+            logo = logo.convert('RGBA')
+            logo.thumbnail((100, 100), Image.LANCZOS)
+            image.paste(logo, ((width - logo.width) // 2, y), logo)
+            y += logo.height + 12
 
         store = config_data['store']
         for text, font in (

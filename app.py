@@ -4,6 +4,7 @@ import re
 import shutil
 import webbrowser
 import sys
+import os
 from pathlib import Path
 from tkinter import *
 from tkinter import messagebox
@@ -157,6 +158,18 @@ def print_raw(commands, job_name):
     if result.returncode:
         detail = result.stderr.decode(errors="replace").strip()
         raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+
+
+def print_pdf_with_windows(pdf_path):
+    """Print a bill through the Windows PDF handler and default Windows printer."""
+    if sys.platform != "win32":
+        raise RuntimeError("Windows printing is available only when running the Windows application.")
+    try:
+        os.startfile(str(pdf_path), "print")
+    except OSError as error:
+        raise RuntimeError(
+            "Windows could not print the PDF. Set a default printer and a default PDF application, then try again."
+        ) from error
 
 def valid_phone(phn):
     if re.match(r"[6789]\d{9}$", phn):
@@ -2200,7 +2213,9 @@ class BillWindow:
         self.multi_match_table = ttk.Treeview(biller)
         self.product_key_entry.place(relx=0.112, rely=0.293, width=screen_ratio[0]*400, height=screen_ratio[1]*40)
         self.product_key_entry.configure(font=medium_font, relief="flat")
-        self.product_key_entry.bind("<Return>", lambda Event, product_key=self.product_key_entry.get(): self.get_product_details(Event, self.product_key_entry.get()))
+        self.product_key_entry.bind("<Return>", self.scan_product)
+        self.product_key_entry.bind("<KP_Enter>", self.scan_product)
+        self.product_key_entry.bind("<Tab>", self.scan_product)
         self.product_key_entry.bind("<Down>", self.focus_bill_table)
         self.product_key_entry.bind("<Up>", lambda Event: self.c_mail.focus())
 
@@ -2567,7 +2582,10 @@ class BillWindow:
             ).save(output_path)
                     
             try:
-                print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+                if sys.platform == "win32":
+                    print_pdf_with_windows(output_path)
+                else:
+                    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
             except Exception as printer_error:
                 # The PDF was created successfully, so a missing/offline thermal
                 # printer must not make the billing operation fail.
@@ -2806,6 +2824,12 @@ class BillWindow:
         self.update_paid(Event=Event)
         # self.amount_label.configure(text=self.total)
         
+
+    def scan_product(self, Event=None):
+        """Accept the Enter/Tab suffix sent by USB keyboard-wedge barcode readers."""
+        product_key = self.product_key_entry.get().strip()
+        self.get_product_details(Event, product_key)
+        return "break"
 
     def get_product_details(self, Event, product_key=None):
 
