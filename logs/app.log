@@ -1,0 +1,95 @@
+2026-09-09 23:15:32,657:ERROR:Command '['lp', '-o', 'raw', '-t', 'BilledIn bill RBF0000002']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2501, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"BilledIn bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 120, in print_raw
+    run(["lp", "-o", "raw", "-t", job_name], input=b"".join(commands), check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lp', '-o', 'raw', '-t', 'BilledIn bill RBF0000002']' returned non-zero exit status 1.
+2026-09-09 23:15:40,180:ERROR:Command '['lp', '-o', 'raw', '-t', 'BilledIn bill RBF0000002']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2501, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"BilledIn bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 120, in print_raw
+    run(["lp", "-o", "raw", "-t", job_name], input=b"".join(commands), check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lp', '-o', 'raw', '-t', 'BilledIn bill RBF0000002']' returned non-zero exit status 1.
+2026-09-09 23:19:11,845:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2508, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"BilledIn bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 127, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-09 23:19:42,971:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2508, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"BilledIn bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 127, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:10:33,227:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2516, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"BilledIn bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 127, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:29:36,397:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2528, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:33:21,007:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2546, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:37:29,176:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2546, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:38:21,000:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2546, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:41:43,324:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2546, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:45:15,630:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2547, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:46:26,119:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2547, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
+2026-09-10 22:48:13,480:ERROR:lp: Error - No default destination.
+Traceback (most recent call last):
+  File "/home/rusty/BilledIn/app.py", line 2547, in generate_thermal_bill
+    print_raw(esc_pos_cmds, f"{config_data['store']['store_name']} bill {bill_no}")
+  File "/home/rusty/BilledIn/app.py", line 136, in print_raw
+    raise RuntimeError(detail or "Unable to send the bill to the default CUPS printer.")
+RuntimeError: lp: Error - No default destination.
